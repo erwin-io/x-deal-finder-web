@@ -1,0 +1,68 @@
+<div class="content mat-app-background">
+  <div fxFlex fxLayout="column" class="content-inner" fxFlex="40" fxFlex.lt-md="90" fxFlex.lt-lg="60">
+    <div fxLayout="row" fxLayoutGap="50px" fxLayout.lt-sm="column wrap" *ngIf="!isProcessing" >
+      <div fxFlex="40" fxFlex.lt.sm="100" fxLayout="column" style="justify-content: center;">
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <img src="../../../../assets/img/vector/app_banner.jpg" />
+        </div>
+      </div>
+
+      <div fxFlex="60" fxFlex.lt-sm="100" fxLayout="column">
+        <div fxLayout="column" fxLayoutAlign="center" style="margin-top:30px">
+          <div fxLayout="row" fxLayoutAlign="center">
+            <h3>{{isAdminUserType? title + ' Admin login':'Welcome to '+ title}}</h3>
+          </div>
+
+          <div fxLayout="row" fxLayoutAlign="center">
+            <h4>Please sign in below</h4>
+          </div>
+        </div>
+
+        <!-- <mat-short-vertical-login></mat-short-vertical-login> -->
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutAlign="center" >
+          <fieldset fxFlex="100" fxLayout="column wrap" [disabled]="isProcessing">
+            <mat-form-field appearance="outline">
+              <mat-label>Username</mat-label>
+              <input
+                matInput
+                placeholder="Username"
+                formControlName="username">
+                <mat-error *ngIf="getError('username') !== (null || undefined)">{{
+                  (getError('username') && getError('username').required ? 'Please enter your username' : '')
+                }}</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Password</mat-label>
+              <input
+                #password
+                matInput
+                type="password"
+                placeholder="Password"
+                formControlName="password">
+              <mat-icon
+                class="icon-right"
+                (click)="password.type = (password.type === 'password' ? 'text' : 'password')"
+                style="cursor: pointer;"
+                matSuffix>{{ password.type === 'password' ? 'visibility' : 'visibility_off' }}</mat-icon>
+                <mat-error *ngIf="getError('password') !== (null || undefined)">{{
+                  (getError('password') && getError('password').required ? 'Please enter your password' : '')
+                }}</mat-error>
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit" [disabled]="isProcessing">Login</button>
+            <mat-error class="form-error" fxLayoutAlign="center" *ngIf="error !== null || error !== undefined">{{ error }}</mat-error>
+          </fieldset>
+        </form>
+      <div fxLayout="row" fxLayoutAlign="center">
+        <h3 *ngIf="isAdminUserType">Click <a routerLink="/admin/auth/signup" >here</a> to request account</h3>
+        <h3 *ngIf="!isAdminUserType">Don't have an account? <a routerLink="/auth/signup" >Sign up</a></h3>
+      </div>
+      </div>
+    </div>
+
+    <div class="login-progress" fxLayout="row" fxLayoutAlign="center" *ngIf="isProcessing">
+      <mat-spinner diameter="30" ></mat-spinner>
+      <h2 class="label">Loging in please wait...</h2>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,62 @@
+
+::ng-deep .mat-horizontal-stepper-header-container {
+  display: none !important;
+}
+
+::ng-deep mat-stepper {
+  background-color: transparent!important;
+  width: 100%!important;
+  margin-top: 0!important;
+  mat-step-header {
+    display: none!important;
+  }
+  .mat-vertical-content-container {
+    margin-left: 0!important;
+    &.mat-stepper-vertical-line{
+      &::before{
+        display: none!important;
+      }
+    }
+  }
+}
+.content {
+  display:flex;
+  height:100%;
+  align-items: center;
+  justify-content: center;
+  mat-card {
+    width: 100%!important;
+    margin-bottom: 20px;
+    .signup-stepper-header {
+      padding: 0 24px;
+      * {
+        margin: 0!important;
+      }
+    }
+  }
+  .content-inner {
+    align-items: center;
+    padding: 0 20px!important;
+    .mat-stepper-horizontal {
+      margin-top: 8px;
+    }
+
+    .mat-form-field {
+      margin-top: 16px;
+      &.cell {
+        &.isLargeScreen{
+          padding-right: 10px!important;
+        }
+      }
+    }
+
+    form {
+      fieldset {
+        padding: 0!important;
+        margin: 0!important;
+        border: none!important;
+        min-width: 0!important;
+      }
+    }
+  }
+}

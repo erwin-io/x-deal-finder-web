@@ -1,0 +1,28 @@
+mat-sidenav-container, mat-sidenav-content, mat-sidenav {
+  /* Using 100vh causes double scrollbars to appear on some devices */
+  height: 90vh;
+}
+
+mat-sidenav-container {
+  border-bottom: 1px solid #808080;
+  flex-grow: 1;
+  height: 100%!important;
+  mat-sidenav {
+    height: 100%;
+  }
+  mat-sidenav-content {
+    height: 100%;
+  }
+}
+
+.mat-sidenav {
+  width: 220px;
+}
+
+button.menu-button {
+  color: inherit;
+  background: transparent;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}

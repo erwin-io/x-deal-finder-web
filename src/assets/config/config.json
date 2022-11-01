@@ -1,0 +1,87 @@
+{
+  "appTitle": "X-Deal Finder",
+  "tableColumns": {
+    "appointment": {
+      "admin": ["appointmentId", "appointmentDate", "client", "consultaionType", "service", "vet", "amountToPay", "appointmentStatus", "controls"],
+      "manager": ["appointmentId", "appointmentDate", "client", "consultaionType", "service", "vet", "amountToPay", "appointmentStatus", "controls"],
+      "vet": ["appointmentId", "appointmentDate", "client", "consultaionType", "service", "appointmentStatus", "controls"],
+      "frontDesk": ["appointmentId", "appointmentDate", "client", "consultaionType", "service", "vet", "amountToPay", "appointmentStatus", "controls"]
+    }
+  },
+  "lookup": {
+    "appointmentStatus": ["Pending", "Approved", "Completed", "Cancelled"],
+    "serviceType": [],
+    "consultaionType": ["Onsite", "Video"],
+    "paymentType": [{"paymentTypeId":"1", "name": "Cash"}, {"paymentTypeId":"2", "name": "G-Cash"}],
+    "roles": [
+      {
+        "roleId": "1",
+        "name": "Admin"
+      },
+      {
+        "roleId": "2",
+        "name": "Manager"
+      },
+      {
+        "roleId": "3",
+        "name": "Veterinarian"
+      },
+      {
+        "roleId": "4",
+        "name": "Front desk"
+      }]
+  },
+  "apiEndPoints": {
+    "auth": {
+      "login": {
+        "admin": "auth/login/admin",
+        "client": "auth/login/client"
+      },
+      "register": {
+        "admin": "auth/register/admin",
+        "client": "auth/register/client"
+      },
+      "findByUsername": "auth/findByUsername/"
+    },
+    "user": {
+      "get": "users?userTypeId=",
+      "getStaffByAdvanceSearch": "users/getStaffByAdvanceSearch",
+      "getClientByAdvanceSearch": "users/getClientByAdvanceSearch",
+      "getById": "users/",
+      "createStaff": "users/staff",
+      "createClient": "users/client",
+      "udpdateClient": "users/client",
+      "udpdateStaff": "users/staff",
+      "toggleEnable": "users/toggleEnable"
+    },
+    "role": "roles/",
+    "serviceType": "service-type/",
+    "appointment": {
+      "get": "appointment",
+      "getByAdvanceSearch": "appointment/getByAdvanceSearch",
+      "getById": "appointment/",
+      "createClientAppointment": "appointment/createClientAppointment",
+      "createClientCashlessAppointment": "appointment/createClientCashlessAppointment",
+      "createOnsiteAppointment": "appointment/createOnsiteAppointment",
+      "createWalkInAppointment": "appointment/createWalkInAppointment",
+      "rescheduleAppointment": "appointment/rescheduleAppointment",
+      "updateAppointmentStatus": "appointment/updateAppointmentStatus"
+    },
+    "payment": {
+      "get": "payments",
+      "getById": "payments/",
+      "create": "payments",
+      "void": "payments/void/"
+    },
+    "pet": {
+      "get": "pet",
+      "getByClientId": "pet/findByClientId/",
+      "getById": "pet/",
+      "create": "pet",
+      "update": "pet",
+      "delete": "pet/"
+    },
+    "petType": "pet-type/",
+    "petCategory": "pet-category/"
+  }
+}

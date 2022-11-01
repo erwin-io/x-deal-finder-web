@@ -1,0 +1,40 @@
+<mat-toolbar color="primary">
+  <div class="container">
+    <button mat-icon-button id="btn-sidebar" (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div class="title">
+      <h3>{{title}}</h3>
+    </div>
+    <div class="menu">
+      <button mat-flat-button color="primary" routerLink="today">Deals for today</button>
+      <button mat-flat-button color="primary">Stores <mat-icon>expand_more</mat-icon></button>
+    </div>
+    <div class="search" >
+      <input>
+      <button mat-icon-button color="primary" aria-label="Example icon button with a home icon">
+        <mat-icon>search</mat-icon>
+      </button>
+    </div>
+    <button id="btn-header-profile" mat-icon-button >
+      <mat-icon>account_circle</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="side" [opened]="opened" [mode]="!opened ? 'over': 'side'" fxHide fxShow.lt-sm>
+    <div class="side-nav-header">
+      <h3 class="side-nav-title"><strong>{{title}}</strong></h3>
+    </div>
+    <mat-divider></mat-divider>
+    <mat-nav-list>
+      <app-menu-list-item *ngFor="let item of menu" [item]="item" (onChildItemClick)="!opened ? sidenav.toggle() : false" (click)="!opened && !item.isParent? sidenav.toggle() : false"></app-menu-list-item>
+      <app-menu-list-item [item]="signOutMenuItem" (click)="handleSignOut()"></app-menu-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

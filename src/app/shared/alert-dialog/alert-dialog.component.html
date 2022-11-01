@@ -1,0 +1,15 @@
+<mat-progress-bar mode="query" *ngIf="isProcessing"></mat-progress-bar>
+<h4 mat-dialog-title *ngIf="!isProcessing">
+  {{alertDialogConfig.title}}
+</h4>
+
+<div mat-dialog-content>
+  <p>{{alertDialogConfig.message}}</p>
+</div>
+
+<div mat-dialog-actions>
+  <div>
+    <button mat-flat-button [disabled]="isProcessing" cdkFocusInitial (click)="onDismiss()">{{alertDialogConfig.dismissButton.text}}</button>
+    <button mat-flat-button [disabled]="isProcessing" *ngIf="alertDialogConfig.confirmButton.visible" [color]="alertDialogConfig.confirmButton.color" (click)="onConfirm()">{{alertDialogConfig.confirmButton.text}}</button>
+  </div>
+</div>

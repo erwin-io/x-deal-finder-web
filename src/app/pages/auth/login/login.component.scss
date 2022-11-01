@@ -1,0 +1,17 @@
+
+.content {
+  display:flex;
+  height:100%;
+  align-items: center;
+  justify-content: center;
+  .content-inner {
+    align-items: center;
+    .login-progress {
+      align-items: center;
+      column-gap: 10px;
+      .label {
+        margin: 0!important;
+      }
+    }
+  }
+}
