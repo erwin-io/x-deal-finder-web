@@ -33,7 +33,7 @@ export class AuthService implements IServices {
   }
 
   registerAdmin(data: any): Observable<any> {
-    return this.http.post<any>(environment.apiBaseUrl + this.appconfig.config.apiEndPoints.auth.register.staff, data)
+    return this.http.post<any>(environment.apiBaseUrl + this.appconfig.config.apiEndPoints.auth.register.admin, data)
     .pipe(
       tap(_ => this.log('register')),
       catchError(this.handleError('register', []))
@@ -53,14 +53,6 @@ export class AuthService implements IServices {
     .pipe(
       tap(_ => this.log('findByUsername')),
       catchError(this.handleError('findByUsername', []))
-    );
-  }
-
-  refreshToken(data: any): Observable<any> {
-    return this.http.post<any>(environment.apiBaseUrl + this.appconfig.config.apiEndPoints.auth.refreshToken, data)
-    .pipe(
-      tap(_ => this.log('refresh token')),
-      catchError(this.handleError('refresh token', []))
     );
   }
 
