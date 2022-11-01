@@ -34,12 +34,12 @@
   "apiEndPoints": {
     "auth": {
       "login": {
-        "admin": "auth/login/admin",
-        "client": "auth/login/client"
+        "admin": "admin/auth/login",
+        "client": "auth/login"
       },
       "register": {
-        "admin": "auth/register/admin",
-        "client": "auth/register/client"
+        "admin": "admin/auth/register",
+        "client": "auth/register"
       },
       "findByUsername": "auth/findByUsername/"
     },
