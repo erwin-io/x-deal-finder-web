@@ -4,7 +4,7 @@
       <mat-icon>menu</mat-icon>
     </button>
     <div class="title">
-      <h3>{{title}}</h3>
+      <a routerLink="/"><h3>{{title}}</h3></a>
     </div>
     <div class="menu">
       <button mat-flat-button color="primary" routerLink="today">Deals for today</button>
@@ -16,9 +16,19 @@
         <mat-icon>search</mat-icon>
       </button>
     </div>
-    <button id="btn-header-profile" mat-icon-button >
+    <button id="btn-header-profile" mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>account_circle</mat-icon>
     </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="account/profile-settings">
+        <mat-icon>settings</mat-icon>
+        <span>Profile Settings</span>
+      </button>
+      <button mat-menu-item (click)="handleSignOut()">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Sign Out</span>
+      </button>
+    </mat-menu>
   </div>
 </mat-toolbar>
 <mat-sidenav-container>
@@ -28,8 +38,10 @@
     </div>
     <mat-divider></mat-divider>
     <mat-nav-list>
-      <app-menu-list-item *ngFor="let item of menu" [item]="item" (onChildItemClick)="!opened ? sidenav.toggle() : false" (click)="!opened && !item.isParent? sidenav.toggle() : false"></app-menu-list-item>
-      <app-menu-list-item [item]="signOutMenuItem" (click)="handleSignOut()"></app-menu-list-item>
+      <app-menu-list-item [item]="{ displayName: 'Home',iconName: 'home', route: 'home', isParent: false }" (onChildItemClick)="!opened ? sidenav.toggle() : false" (click)="!opened? sidenav.toggle() : false"></app-menu-list-item>
+      <app-menu-list-item [item]="{ displayName: 'Deals for today',iconName: 'today', route: 'today', isParent: false }" (onChildItemClick)="!opened ? sidenav.toggle() : false" (click)="!opened? sidenav.toggle() : false"></app-menu-list-item>
+      <app-menu-list-item [item]="{ displayName: 'Profile Settings',iconName: 'settings', route: 'account/profile-settings', isParent: false }" (onChildItemClick)="!opened ? sidenav.toggle() : false" (click)="!opened? sidenav.toggle() : false"></app-menu-list-item>
+      <app-menu-list-item [item]="{ displayName: 'Sign Out', iconName: 'exit_to_app' }" (click)="handleSignOut()"></app-menu-list-item>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

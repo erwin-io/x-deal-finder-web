@@ -1,0 +1,32 @@
+<mat-toolbar color="primary">
+  <div class="container">
+    <div class="title">
+      <h3>Profile</h3>
+    </div>
+    <div class="menu">
+      <button mat-flat-button color="primary" routerLink="/admin/dashboard" fxShow fxHide.lt-sm *ngIf="isAdminUserType">Dashboard</button>
+      <button mat-flat-button color="primary" routerLink="/home" fxShow fxHide.lt-sm *ngIf="!isAdminUserType">Browse deals</button>
+      <button mat-flat-button color="primary" fxShow fxHide.lt-sm (click)="handleSignOut()">Sign Out</button>
+      <button mat-icon-button [matMenuTriggerFor]="menu" fxHide fxShow.lt-sm>
+        <mat-icon>apps</mat-icon>
+      </button>
+    </div>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item *ngIf="isAdminUserType" routerLink="/admin/dashboard" >
+        <mat-icon>dashboard</mat-icon>
+        <span>Dashboard</span>
+      </button>
+      <button mat-menu-item *ngIf="!isAdminUserType" routerLink="/home">
+        <mat-icon>today</mat-icon>
+        <span>Deals for today</span>
+      </button>
+      <button mat-menu-item (click)="handleSignOut()">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Sign Out</span>
+      </button>
+    </mat-menu>
+  </div>
+</mat-toolbar>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

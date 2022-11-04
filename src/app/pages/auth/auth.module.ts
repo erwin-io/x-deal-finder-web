@@ -10,11 +10,17 @@ import { RegisterModule } from './register/register.module';
 export const routes: Routes = [
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    data: {
+      title: 'Login',
+    }
   },
   {
     path: 'signup',
-    component: RegisterComponent
+    component: RegisterComponent,
+    data: {
+      title: 'Login',
+    }
   }
 
 ];

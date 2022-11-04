@@ -1,0 +1,31 @@
+
+.page-view-container {
+  .content-inner {
+    .mat-form-field {
+      &.isLargeScreen{
+        padding-right: 10px!important;
+      }
+    }
+
+    form {
+      fieldset {
+        padding: 0!important;
+        margin: 0!important;
+        border: none!important;
+        min-width: 0!important;
+      }
+    }
+
+
+    .group-info {
+      align-items: center;
+      column-gap: 10px;
+      mat-icon {
+
+      }
+      .group-info-text {
+        margin: 0!important;
+      }
+    }
+  }
+}

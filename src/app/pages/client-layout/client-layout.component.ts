@@ -19,15 +19,6 @@ export class ClientLayoutComponent implements OnDestroy {
   title;
   opened: boolean = true;
   mediaWatcher: Subscription;
-  menu: NavItem[] = [
-    { displayName: 'Home',iconName: 'home', route: 'home', isParent: false },
-    { displayName: 'Deals for today',iconName: 'today', route: 'today', isParent: false },
-  ];
-  defaultMenuItem = {
-    displayName: 'Home',
-    iconName: 'home',
-    route: 'home'
-  } as NavItem;
   signOutMenuItem = {
       displayName: 'Sign Out',
       iconName: 'exit_to_app'
@@ -52,9 +43,6 @@ export class ClientLayoutComponent implements OnDestroy {
       })
 
 
-  }
-
-  initMenu(){
   }
 
   private handleMediaChange() {

@@ -34,25 +34,22 @@
   "apiEndPoints": {
     "auth": {
       "login": {
-        "admin": "admin/auth/login",
-        "client": "auth/login"
+        "admin": "auth/login/admin/",
+        "client": "auth/login/client"
       },
       "register": {
-        "admin": "admin/auth/register",
-        "client": "auth/register"
+        "admin": "auth/register/admin/",
+        "client": "auth/register/client"
       },
       "findByUsername": "auth/findByUsername/"
     },
     "user": {
-      "get": "users?userTypeId=",
-      "getStaffByAdvanceSearch": "users/getStaffByAdvanceSearch",
-      "getClientByAdvanceSearch": "users/getClientByAdvanceSearch",
       "getById": "users/",
-      "createStaff": "users/staff",
-      "createClient": "users/client",
-      "udpdateClient": "users/client",
-      "udpdateStaff": "users/staff",
-      "toggleEnable": "users/toggleEnable"
+      "getAllAdminUserType": "users/getAllAdminUserType",
+      "getAllClientUserType": "users/getAllClientUserType",
+      "update": "users/",
+      "toggleLock": "users/toggleLock",
+      "approveAdminUser": "users/approveAdminUser/"
     },
     "role": "roles/",
     "serviceType": "service-type/",

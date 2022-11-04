@@ -40,8 +40,14 @@ export class AdminLayoutComponent implements OnDestroy {
     },
     {
       displayName: 'Clients',
-      iconName: 'account_circle',
+      iconName: 'contacts',
       route: 'admin/clients',
+      isParent: false,
+    },
+    {
+      displayName: 'Account settings',
+      iconName: 'account_circle',
+      route: 'admin/account',
       isParent: false,
     }
   ];
@@ -70,7 +76,7 @@ export class AdminLayoutComponent implements OnDestroy {
     const user = this.storageService.getLoginUser();
     if(!user){
       this.storageService.saveLoginUser(null);
-      this.router.navigate(['auth/login'], { replaceUrl: true });
+      this.router.navigate(['admin/auth/login'], { replaceUrl: true });
     }
   }
 
@@ -103,7 +109,7 @@ export class AdminLayoutComponent implements OnDestroy {
     dialogRef.componentInstance.alertDialogConfig = dialogData;
     dialogRef.componentInstance.conFirm.subscribe((data: any) => {
       this.storageService.saveLoginUser(null);
-      this.router.navigate(['auth/login'], { replaceUrl: true });
+      this.router.navigate(['admin/auth/login'], { replaceUrl: true });
       dialogRef.close();
   });
     // dialogRef.afterClosed().subscribe(dialogResult => {

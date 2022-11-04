@@ -1,0 +1,134 @@
+<div class="page-view-container" fxFlex="100" fxLayout="column" fxLayoutGap="10px">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-subtitle>Edit User</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content fxLayout="column" >
+      <div fxFlex="100" class="content-inner">
+        <!-- <mat-short-vertical-login></mat-short-vertical-login> -->
+        <form [formGroup]="userForm" fxLayout="row wrap" id="userForm" (ngSubmit)="onSubmit()">
+            <fieldset fxFlex="100" fxLayout="row wrap" [disabled]="isProcessing">
+              <div fxFlex="100" fxLayout="column">
+                <h3>Account details</h3>
+              </div>
+              <div fxFlex="100" fxLayout="column" fxLayout.gt-sm="row" >
+                <mat-form-field appearance="outline" fxFlex="33.33%" class="cell" [ngClass.gt-sm]="{'isLargeScreen': true}" *ngIf="!isLoading; else elseLoadingGridCol3">
+                  <mat-label>First name</mat-label>
+                  <input
+                    matInput
+                    placeholder="First name"
+                    formControlName="firstName">
+                    <mat-error *ngIf="getError('firstName') !== (null || undefined)">{{
+                      (getError('firstName') && getError('firstName').required ? 'Please enter your first name' : '')||
+                      (getError('firstName') && getError('firstName').pattern ? 'Invalid input' : '')
+
+                    }}</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" fxFlex="33.33%" class="cell" [ngClass.gt-sm]="{'isLargeScreen': true}" *ngIf="!isLoading; else elseLoadingGridCol3">
+                  <mat-label>Middle name</mat-label>
+                  <input
+                    matInput
+                    placeholder="Middle name"
+                    formControlName="middleName">
+                    <mat-error *ngIf="getError('middleName') !== (null || undefined)">{{
+                      (getError('middleName') && getError('middleName').pattern ? 'Invalid input' : '')
+                    }}</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" fxFlex="33.33%" class="cell" [ngClass.gt-sm]="{'isLargeScreen': true}" *ngIf="!isLoading; else elseLoadingGridCol3">
+                  <mat-label>Last name</mat-label>
+                  <input
+                    matInput
+                    placeholder="Last name"
+                    formControlName="lastName">
+                    <mat-error *ngIf="getError('lastName') !== (null || undefined)">{{
+                      (getError('lastName') && getError('lastName').required ? 'Please enter your last name' : '')||
+                      (getError('firstName') && getError('firstName').pattern ? 'Invalid input' : '')
+                    }}</mat-error>
+                </mat-form-field>
+              </div>
+              <div fxFlex="100" fxLayout="column" fxLayout.gt-sm="row" style="gap: 15px">
+                <mat-form-field appearance="outline" fxFlex="33.33%" class="cell" [ngClass.gt-sm]="{'isLargeScreen': true}" (click)="picker.open()">
+                  <mat-label>Birthdate</mat-label>
+                  <input
+                    matInput
+                    placeholder="Birthdate"
+                    formControlName="birthDate"
+                    [matDatepicker]="picker">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error *ngIf="getError('birthDate') !== (null || undefined)">{{
+                      (getError('birthDate') && getError('birthDate').required ? 'Please enter your birthdate' : '')
+                    }}</mat-error>
+                </mat-form-field>
+              </div>
+              <div fxFlex="100" fxLayout="column" fxLayout.gt-sm="row">
+                <mat-form-field appearance="outline" fxFlex="33.33%" class="cell" [ngClass.gt-sm]="{'isLargeScreen': true}" *ngIf="!isLoading; else elseLoadingGridCol3">
+                  <mat-label>Select Gender</mat-label>
+                  <mat-select [disabled]="isProcessing"
+                    formControlName="genderId">
+                    <mat-option value="1">Male</mat-option>
+                    <mat-option value="2">Female</mat-option>
+                    <mat-option value="3">Rather not say</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div fxFlex="100" fxLayout="column">
+                <h3>Contact</h3>
+              </div>
+              <div fxFlex="100" fxLayout="column" fxLayout.gt-sm="row" style="gap: 15px">
+                <mat-form-field appearance="outline" fxFlex="33.33%" class="cell" [ngClass.gt-sm]="{'isLargeScreen': true}"  *ngIf="!isLoading; else elseLoadingGridCol3">
+                  <mat-label>Mobile number</mat-label>
+                  <input
+                    matInput
+                    placeholder="Mobile number"
+                    formControlName="mobileNumber">
+                    <mat-error *ngIf="getError('mobileNumber') !== (null || undefined)">{{
+                      (getError('mobileNumber') && getError('mobileNumber').required ? 'Please enter your mobile number' : '') ||
+                      (getError('mobileNumber') && getError('mobileNumber').minlength ? 'Please enter a valid mobile number' : '') ||
+                      (getError('mobileNumber') && getError('mobileNumber').maxlength ? 'Please enter a valid 11 digit mobile number' : '')
+                    }}</mat-error>
+                </mat-form-field>
+              </div>
+              <div fxFlex="100" fxLayout="column">
+                <h3>Addres</h3>
+              </div>
+              <div fxFlex="100" fxLayout="column" fxLayout.gt-sm="row">
+                <mat-form-field appearance="outline" fxFlex="100" class="cell" [ngClass.gt-sm]="{'isLargeScreen': true}" *ngIf="!isLoading; else elseLoadingGridCol1">
+                  <mat-label>Address</mat-label>
+                  <textarea
+                    matInput
+                    placeholder="Address"
+                    formControlName="address">
+                  </textarea>
+                  <mat-error *ngIf="getError('address') !== (null || undefined)">{{
+                    (getError('address') && getError('address').required ? 'Please enter your address' : '')
+                  }}</mat-error>
+                </mat-form-field>
+              </div>
+            </fieldset>
+          </form>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button matTooltip="Back to list" mat-stroked-button routerLink="/admin/admin-users" [disabled]="isProcessing || isLoading" color="primary">Back</button>
+      <button matTooltip="Save" mat-raised-button color="primary" form="userForm" type="submit" [disabled]="isProcessing || !formIsValid ">Save</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+<ng-template #elseLoadingGridCol1>
+  <div fxFlex="100%" class="cell" [ngClass.gt-sm]="{'isLargeScreen': true}">
+    <ngx-skeleton-loader fxFlex [theme]="{ height: '50px', width: '97%'}"></ngx-skeleton-loader>
+  </div>
+</ng-template>
+<ng-template #elseLoadingGridCol2>
+  <div fxFlex="50%" class="cell" [ngClass.gt-sm]="{'isLargeScreen': true}">
+    <ngx-skeleton-loader fxFlex [theme]="{ height: '50px', width: '97%'}"></ngx-skeleton-loader>
+  </div>
+</ng-template>
+<ng-template #elseLoadingGridCol3>
+  <div fxFlex="33.33%" class="cell" [ngClass.gt-sm]="{'isLargeScreen': true}">
+    <ngx-skeleton-loader fxFlex [theme]="{ height: '50px', width: '97%'}"></ngx-skeleton-loader>
+  </div>
+</ng-template>

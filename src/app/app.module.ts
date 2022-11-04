@@ -1,5 +1,5 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +19,8 @@ import { MatTimepickerModule } from './core/directive/mat-timepicker/src/lib/mat
 import { MenuListItemComponent } from './shared/menu-list-item/menu-list-item.component';
 import { AdminLayoutComponent } from './pages/admin-layout/admin-layout.component';
 import { ClientLayoutComponent } from './pages/client-layout/client-layout.component';
+import { AccountsLayoutComponent } from './pages/accounts-layout/accounts-layout.component';
+import { StoreMenuModalComponent } from './component/store-menu-modal/store-menu-modal.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { ClientLayoutComponent } from './pages/client-layout/client-layout.compo
     FormFieldErrorComponent,
     SnackbarComponent,
     AlertDialogComponent,
+    AccountsLayoutComponent,
+    StoreMenuModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +48,7 @@ import { ClientLayoutComponent } from './pages/client-layout/client-layout.compo
     MatTimepickerModule,
   ],
   providers: [
+    Title,
     { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500} },
     {
       provide : APP_INITIALIZER,

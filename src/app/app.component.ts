@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 import { AppConfigService } from './core/services/app-config.service';
 
 @Component({
@@ -7,9 +9,12 @@ import { AppConfigService } from './core/services/app-config.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title;
 
-  constructor(private appConfigService: AppConfigService) {
-    this.title = this.appConfigService.config.appTitle;
+  constructor(private appConfigService: AppConfigService,
+    private route: ActivatedRoute,
+    private titleService: Title) {
+      const isAdminUserType = this.route.snapshot.data['isAdminUserType'];
+      const title = this.route.snapshot.data['title'];
+      this.titleService.setTitle(`${isAdminUserType ? 'Admin' : ''} ${this.route.snapshot.data['title']} ${this.appConfigService.config.appTitle}`);
   }
 }
