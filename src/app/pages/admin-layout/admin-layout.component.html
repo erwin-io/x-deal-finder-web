@@ -2,7 +2,7 @@
   <button mat-icon-button (click)="sidenav.toggle()" class="menu-button" *ngIf="!opened" fxHide fxShow.lt-md>
     <mat-icon>menu</mat-icon>
   </button>
-  <span>VetVerse Application</span>
+  <span>{{title}}</span>
 </mat-toolbar>
 <mat-sidenav-container>
   <mat-sidenav #sidenav mode="side" [opened]="opened" [mode]="!opened ? 'over': 'side'">
