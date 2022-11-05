@@ -10,11 +10,6 @@ import { AppConfigService } from './core/services/app-config.service';
 })
 export class AppComponent {
 
-  constructor(private appConfigService: AppConfigService,
-    private route: ActivatedRoute,
-    private titleService: Title) {
-      const isAdminUserType = this.route.snapshot.data['isAdminUserType'];
-      const title = this.route.snapshot.data['title'];
-      this.titleService.setTitle(`${isAdminUserType ? 'Admin' : ''} ${this.route.snapshot.data['title']} ${this.appConfigService.config.appTitle}`);
+  constructor() {
   }
 }

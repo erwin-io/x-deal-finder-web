@@ -4,11 +4,12 @@ import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { StorageService } from 'src/app/core/storage/storage.service';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertDialogComponent } from '../../shared/alert-dialog/alert-dialog.component';
 import { AlertDialogModel } from '../../shared/alert-dialog/alert-dialog-model';
 import { NavItem } from 'src/app/core/model/nav-item';
 import { AppConfigService } from 'src/app/core/services/app-config.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-client-layout',
@@ -28,9 +29,15 @@ export class ClientLayoutComponent implements OnDestroy {
     private authService: AuthService,
     private dialog: MatDialog,
     public router: Router,
+    private route: ActivatedRoute,
+    private titleService: Title,
     public appConfigService: AppConfigService,
     private storageService: StorageService) {
       this.title = this.appConfigService.config.appTitle;
+      const isAdminUserType = this.route.snapshot.data['isAdminUserType'];
+      const title = this.route.snapshot.data['title'];
+      this.titleService.setTitle(`${isAdminUserType ? 'Admin' : ''} ${this.route.snapshot.data['title']} ${this.appConfigService.config.appTitle}`);
+
       const user = this.storageService.getLoginUser();
       if(!user){
         this.storageService.saveLoginUser(null);
